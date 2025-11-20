@@ -45,10 +45,9 @@ This cohort construction can support:
 ## How to Use
 
 1. Request and download the dataset from BPJS Kesehatan.
-2. Convert the raw BPJS data from .dta (Stata format) to .csv for easier processing in Python.
-3. Update the file paths in the script to point to your local data.
-4. Run the scripts step by step to generate a structured pregnancy cohort.
-5. Output will include clean and analysis-ready datasets.
+2. Update the file paths in the script to point to your local data.
+3. Run the scripts step by step to generate a structured pregnancy cohort.
+4. Output will include clean and analysis-ready datasets.
 
 > ⚠️ This repository **does not include the dataset** due to privacy and access restrictions.
 
