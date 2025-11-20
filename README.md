@@ -52,3 +52,30 @@ This cohort construction can support:
 > ⚠️ This repository **does not include the dataset** due to privacy and access restrictions.
 
 ---
+
+## Script Overview
+
+This repository includes several processing and analysis scripts that support dataset transformation, cohort construction, quality control, and epidemiologic analysis across multiple data levels (visit, individual, and pregnancy).
+
+**1. `dataset generation.py`**  
+Transforms the raw BPJS Kesehatan dataset into structured **visit-level** and **pregnancy-level** datasets.
+
+**2. `dataset generation.ipynb`**  
+A stepwise Jupyter notebook implementation of the dataset generation pipeline. This version is recommended for environments with limited memory resources, as it allows incremental execution rather than full-batch processing.
+
+**3. `generate individual-level.py`**  
+Derives the **individual-level** dataset by aggregating and restructuring the visit-level dataset.
+
+**4. Quality Control Scripts**  
+- `QC_visit individual level.py`: Performs quality control checks on visit-level and individual-level datasets.  
+- `QC_pregnancy level.py`: Performs quality control checks on pregnancy-level datasets.
+
+**5. `remove flagged in pregnancy-level.py`**  
+Filters or removes pregnancy episodes that are flagged as inconsistent or invalid during the QC process.
+
+**6. Odds Ratio Analysis Scripts**  
+- `OR_pregnancy-level.py`: Conducts odds ratio analysis on pregnancy-level datasets.  
+- Additional OR scripts are provided for individual-level and visit-level analyses, following the same naming conventions.
+
+---
+
