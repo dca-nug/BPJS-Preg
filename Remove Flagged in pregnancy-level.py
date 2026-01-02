@@ -23,7 +23,7 @@ CONFLICT_COLS = [
     'c_fail', 'c_abnforce', 'c_long', 'c_malpres', 'c_obspelvic', 'c_iph',
     'c_distress', 'c_umbilical', 'c_laceration', 'c_obstrau', 'c_pph',
     'c_retained', 'c_normal', 'c_instrum', 'c_caesar', 'c_assisted',
-    'c_multiple',
+    'c_multiple', 'c_disprop', 'c_malpresent', 'c_abnorpelv', 'c_placental'
 ]
 
 
@@ -34,7 +34,7 @@ def main():
     db.execute(
         """
         CREATE OR REPLACE TABLE raw_final AS
-        SELECT * FROM read_csv_auto('final_set_90.csv')
+        SELECT * FROM read_csv_auto('final_set.csv')
         """
     )
 
@@ -43,11 +43,11 @@ def main():
     present_cols = set(cols)
 
     if 'pstv01' not in present_cols:
-        raise RuntimeError("Kolom 'PSTV01' tidak ditemukan di final_set_90.csv.")
+        raise RuntimeError("Kolom 'PSTV01' tidak ditemukan di final_set.csv.")
     if 'c_abortive' not in present_cols:
-        raise RuntimeError("Kolom 'c_abortive' tidak ditemukan di final_set_90.csv.")
+        raise RuntimeError("Kolom 'c_abortive' tidak ditemukan di final_set.csv.")
     if 'age' not in present_cols:
-        raise RuntimeError("Kolom 'age' tidak ditemukan di final_set_90.csv.")
+        raise RuntimeError("Kolom 'age' tidak ditemukan di final_set.csv.")
 
     present_conflicts = [c for c in CONFLICT_COLS if c.lower() in present_cols]
 
@@ -92,14 +92,14 @@ def main():
     n_final = db.execute("SELECT COUNT(*) FROM final_filtered").fetchone()[0]
 
     # Write output
-    db.execute("COPY final_filtered TO 'final_set_free_conflicts_90.csv' (HEADER, DELIMITER ',')")
+    db.execute("COPY final_filtered TO 'final_set_free_conflicts.csv' (HEADER, DELIMITER ',')")
 
     print(f"Original rows:                 {n_original}")
     print(f"Dropped by age (12-55):        {n_dropped_age}")
     print(f"Rows after age filter:         {n_after_age}")
     print(f"Dropped by validation conflicts:{n_dropped}")
     print(f"Final rows:                    {n_final}")
-    print("Output saved to final_set_free_conflicts_90.csv")
+    print("Output saved to final_set_free_conflicts.csv")
 
 
 if __name__ == "__main__":
