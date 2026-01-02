@@ -52,7 +52,7 @@ def run_qc_pregnancy(csv_path,
         "c_fail", "c_abnforce", "c_long", "c_malpres", "c_obspelvic", "c_iph",
         "c_distress", "c_umbilical", "c_laceration", "c_obstrau", "c_pph",
         "c_retained", "c_normal", "c_instrum", "c_caesar", "c_assisted",
-        "c_multiple",
+        "c_multiple", "c_disprop", "c_malpresent", "c_abnorpelv", "c_placental"
     ]
     present_conflict_cols = [c for c in requested_conflict_cols if c in df.columns]
 
